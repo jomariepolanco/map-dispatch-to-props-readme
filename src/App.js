@@ -6,7 +6,10 @@ import { addItem } from  './actions/items';
 class App extends Component {
 
   handleOnClick() {
-    this.props.store.dispatch(addItem());
+    this.props.addItem()
+    // this.props.store.dispatch(addItem());
+    //dispatches an action to the store
+    //still relies on redux and store avail
   }
 
   render() {
@@ -27,4 +30,18 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(App);
+// mapDispatchToProps = dispatch => {
+//   return {
+//     addItem: () => {
+//       dispatch(addItem())
+//     }
+//   }
+// }
+
+//now App has a dispatch function available to it at this.props.addItem
+
+//makes state.items avail to App as this.props.items
+
+//connect 2nd function passes in dispatch fn NOT state
+export default connect(mapStateToProps, {addItem})(App);
+//no need for mapDispatchToProps here
